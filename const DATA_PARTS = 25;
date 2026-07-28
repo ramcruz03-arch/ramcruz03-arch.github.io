@@ -1,0 +1,66 @@
+const CACHE_VERSION = 'v6';
+const CACHE_NAME = `kandhan-karunai-${CACHE_VERSION}`;
+const ASSETS = [
+  './',
+  './index.html',
+  './app.js',
+  './data-part1.json',
+  './data-part2.json',
+  './data-part3.json',
+  './data-part4.json',
+  './data-part5.json',
+  './data-part6.json',
+  './data-part7.json',
+  './data-part8.json',
+  './data-part9.json',
+  './data-part10.json',
+  './data-part11.json',
+  './data-part12.json',
+  './data-part13.json',
+  './data-part14.json',
+  './data-part15.json',
+  './data-part16.json',
+  './data-part17.json',
+  './data-part18.json',
+  './data-part19.json',
+  './data-part20.json',
+  './data-part21.json',
+  './data-part22.json',
+  './data-part23.json',
+  './data-part24.json',
+  './data-part25.json',
+  './data-part26.json',
+  './manifest.json',
+  './icon.svg',
+  './murugan.svg'
+];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request).then(response => {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+        return response;
+      }).catch(() => cached);
+    })
+  );
+});
