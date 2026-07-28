@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1c0b10">
+<title>Kandhan Karunai</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans+Tamil:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#f3e9d2; --void:#1c0b10; --void2:#2b1017;
+  --vermillion:#c1442b; --gold:#c9a24a; --peacock:#1f6b5c;
+  --line:rgba(243,233,210,0.14);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(1200px 700px at 15% -10%, rgba(193,68,43,.22), transparent 60%),
+    radial-gradient(900px 600px at 100% 0%, rgba(31,107,92,.18), transparent 55%),
+    var(--void);
+  background-attachment:fixed;
+  color:var(--ink); font-family:Inter,sans-serif; min-height:100vh;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.tamil{font-family:'Noto Sans Tamil',sans-serif;}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;}
+
+header{padding:18px 20px 22px;text-align:center;border-bottom:1px solid var(--line);}
+header .hero{width:100%;max-width:300px;height:auto;display:block;margin:0 auto 2px;}
+header h1{font-size:2.3rem;font-weight:600;letter-spacing:.03em;margin:6px 0 6px;color:var(--gold);}
+header .apptamil{font-family:'Noto Sans Tamil',sans-serif;font-size:1.45rem;color:var(--gold);opacity:.9;margin-bottom:10px;letter-spacing:.02em;}
+header .mantra{font-size:1.3rem;opacity:.9;}
+header .sub{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.5;margin:10px 0 0;}
+
+nav{
+  display:flex;justify-content:center;gap:6px;padding:12px;flex-wrap:wrap;
+  position:sticky;top:0;background:rgba(28,11,16,.94);backdrop-filter:blur(8px);
+  z-index:20;border-bottom:1px solid var(--line);
+}
+nav button{
+  background:transparent;border:1px solid var(--line);color:var(--ink);
+  padding:9px 15px;border-radius:999px;font-family:Inter,sans-serif;font-size:.8rem;
+  cursor:pointer;transition:.2s;opacity:.72;
+}
+nav button.active{background:var(--vermillion);border-color:var(--vermillion);opacity:1;color:#fff8ee;}
+nav button:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+main{max-width:760px;margin:0 auto;padding:24px 18px 90px;}
+section{display:none;}
+section.active{display:block;animation:fade .3s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.section-title{font-size:1.55rem;color:var(--gold);margin:4px 0 6px;font-weight:600;}
+.section-desc{font-size:.9rem;opacity:.68;margin:0 0 22px;line-height:1.55;}
+
+.subnav{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap;}
+.sub-btn{background:transparent;border:none;border-bottom:2px solid transparent;color:var(--ink);
+  opacity:.55;padding:6px 2px;margin-right:14px;font-family:Inter,sans-serif;font-size:.84rem;cursor:pointer;}
+.sub-btn.active{opacity:1;color:var(--gold);border-bottom-color:var(--gold);}
+.sub-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.tview{display:none;}
+.tview.active{display:block;}
+.sview{display:none;}
+.sview.active{display:block;}
+.life h3{margin:2px 0 1px;font-size:1.3rem;}
+.life .who{font-size:.95rem;color:var(--gold);opacity:.85;font-family:'Noto Sans Tamil',sans-serif;}
+.life .when{font-size:.74rem;opacity:.5;letter-spacing:.04em;margin:5px 0 2px;text-transform:uppercase;}
+.life .who2{font-size:.8rem;opacity:.6;margin:6px 0 2px;}
+.life .role{font-size:.86rem;opacity:.75;font-style:italic;margin-bottom:12px;}
+.life p{font-size:.93rem;line-height:1.72;opacity:.88;margin:0 0 12px;}
+.life p em{color:var(--gold);font-style:italic;opacity:.95;}
+.life .struct{font-size:.78rem;opacity:.55;font-style:normal;border-left:2px solid var(--line);padding-left:11px;margin-top:12px;}
+.acc.fulltext{margin:-6px 0 16px;background:rgba(201,162,74,.04);}
+.ksec{margin-bottom:20px;}
+.khead{font-family:'Noto Sans Tamil',sans-serif;font-size:1.02rem;color:var(--gold);margin-bottom:2px;}
+.knote{font-size:.76rem;opacity:.55;margin-bottom:8px;}
+.venue{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+  padding:9px 2px;border-bottom:1px solid var(--line);}
+.venue .ta{font-family:'Noto Sans Tamil',sans-serif;font-size:.95rem;color:var(--gold);opacity:.9;}
+.venue .en{font-size:.78rem;opacity:.5;text-align:right;flex-shrink:0;}
+.searchbar{
+  width:100%;padding:12px 16px;margin-bottom:16px;border-radius:999px;
+  border:1px solid var(--line);background:rgba(255,255,255,.04);
+  color:var(--ink);font-family:'Noto Sans Tamil',Inter,sans-serif;font-size:.95rem;
+}
+.searchbar::placeholder{color:var(--ink);opacity:.4;}
+.searchbar:focus{outline:none;border-color:var(--gold);}
+
+.card{
+  border:1px solid var(--line);border-radius:14px;padding:17px 19px;margin-bottom:13px;
+  background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);
+}
+figure.shot{margin:-17px -19px 14px;position:relative;}
+figure.shot img{width:100%;height:170px;object-fit:cover;display:block;border-radius:13px 13px 0 0;}
+figure.shot figcaption{font-size:.66rem;opacity:.45;padding:5px 19px 0;line-height:1.4;}
+figure.shot figcaption a{color:var(--gold);text-decoration:none;}
+figure.shot figcaption a:hover{text-decoration:underline;}
+.card .num{font-family:'Cormorant Garamond',serif;font-size:.75rem;color:var(--gold);opacity:.8;letter-spacing:.08em;text-transform:uppercase;}
+.card h3{margin:4px 0 2px;font-size:1.35rem;}
+.card .tname{font-size:1rem;color:var(--gold);opacity:.85;margin-bottom:8px;}
+.card .meta{font-size:.76rem;opacity:.55;margin-bottom:10px;}
+.card p{font-size:.9rem;line-height:1.6;opacity:.85;margin:0 0 8px;}
+.tag{display:inline-block;font-size:.7rem;border:1px solid var(--peacock);color:#bfe3d9;padding:3px 10px;border-radius:999px;}
+
+.acc{border:1px solid var(--line);border-radius:14px;padding:15px 18px;margin-bottom:11px;cursor:pointer;}
+.acc .row{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.acc h3{margin:0;font-size:1.12rem;}
+.acc .arrow{color:var(--gold);transition:transform .2s;}
+.acc.open .arrow{transform:rotate(90deg);}
+.acc .body{display:none;margin-top:12px;}
+.acc.open .body{display:block;}
+.acc:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+.verse{
+  font-family:'Noto Sans Tamil',sans-serif;font-size:1.03rem;line-height:1.9;color:var(--gold);
+  background:rgba(201,162,74,.06);border-left:2px solid var(--gold);
+  padding:10px 14px;margin-bottom:10px;border-radius:0 8px 8px 0;
+}
+.meaning{font-size:.88rem;line-height:1.6;opacity:.85;}
+.songline{
+  font-family:'Noto Sans Tamil',sans-serif;font-size:.94rem;
+  padding:7px 12px;margin-bottom:4px;border-left:2px solid rgba(201,162,74,.35);
+  background:rgba(201,162,74,.04);border-radius:0 6px 6px 0;
+}
+.songfull{padding:4px 0 12px;margin-bottom:10px;border-bottom:1px solid var(--line);}
+.songfull:last-child{border-bottom:none;}
+.songmeta{font-size:.74rem;opacity:.55;margin-bottom:8px;font-family:'Noto Sans Tamil',Inter,sans-serif;line-height:1.5;}
+.songline .idx{color:var(--gold);opacity:.7;font-family:Inter,sans-serif;font-size:.8rem;margin-right:6px;}
+
+.star{color:var(--gold);opacity:.45;font-size:1.1rem;padding:0 4px;cursor:pointer;background:none;border:none;}
+.star.on{opacity:1;}
+
+.fest{display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);}
+.fest:last-child{border-bottom:none;}
+.fest .when{min-width:90px;font-size:.78rem;color:var(--gold);opacity:.85;padding-top:2px;}
+.fest h4{margin:0 0 4px;font-size:1.02rem;}
+.fest p{margin:0;font-size:.86rem;opacity:.72;line-height:1.5;}
+
+.prayer{
+  border:1px solid var(--peacock);border-radius:14px;padding:20px;text-align:center;
+  margin-bottom:22px;background:rgba(31,107,92,.08);
+}
+.prayer .om{font-family:'Noto Sans Tamil',sans-serif;font-size:1.55rem;color:#bfe3d9;margin-bottom:6px;}
+.prayer p{font-size:.84rem;opacity:.7;margin:0;}
+
+.empty{text-align:center;opacity:.5;font-size:.88rem;padding:30px 10px;}
+footer{text-align:center;padding:24px 20px 40px;font-size:.72rem;opacity:.4;border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+
+<header>
+  <img class="hero" src="./murugan.svg" alt="Stylised illustration of Lord Murugan's Vel and peacock" width="400" height="300">
+  <h1>Kandhan Karunai</h1>
+  <div class="apptamil tamil">கந்தன் கருணை</div>
+  <div class="mantra tamil">ஓம் சரவணபவ</div>
+  <p class="sub">Temples · Thiruppugazh · Anubhuti · Festivals</p>
+</header>
+
+<nav id="nav">
+  <button class="tab-btn active" data-tab="temples">Temples</button>
+  <button class="tab-btn" data-tab="songs">Thiruppugazh</button>
+  <button class="tab-btn" data-tab="anubhuti">Anubhuti</button>
+  <button class="tab-btn" data-tab="stories">Stories</button>
+  <button class="tab-btn" data-tab="saved">Saved</button>
+  <button class="tab-btn" data-tab="calendar">Calendar</button>
+</nav>
+
+<main>
+  <section id="temples" class="active">
+    <div class="subnav" id="temple-subnav">
+      <button class="sub-btn active" data-view="abodes">Six Abodes</button>
+      <button class="sub-btn" data-view="venues">Sacred Places</button>
+      <button class="sub-btn" data-view="world">Around the World</button>
+    </div>
+
+    <div class="tview active" id="view-abodes">
+      <div class="section-title">Arupadai Veedu</div>
+      <p class="section-desc">The six sacred abodes (<span class="tamil">ஆறுபடை வீடு</span>) of Lord Murugan in Tamil Nadu, sung of in Sangam literature and in Arunagirinathar's Thiruppugazh.</p>
+      <div id="abodes"></div>
+    </div>
+
+    <div class="tview" id="view-venues">
+      <div class="section-title">Sacred Places</div>
+      <p class="section-desc">Every shrine and holy place at which Arunagirinathar composed Thiruppugazh — from Tamil Nadu across to Kasi, Sri Sailam, Kathirkamam and Jaffna. <span id="venue-count"></span></p>
+      <input class="searchbar tamil" id="venue-search" placeholder="Search places…" aria-label="Search sacred places">
+      <div id="venues"></div>
+    </div>
+
+    <div class="tview" id="view-world">
+      <div class="section-title">Around the World</div>
+      <p class="section-desc">Major Murugan temples beyond India, where the Tamil diaspora carried his worship. Not exhaustive — these are the most widely known.</p>
+      <div id="world"></div>
+    </div>
+  </section>
+
+  <section id="songs">
+    <div class="section-title">Thiruppugazh</div>
+    <p class="section-desc"><span class="tamil">திருப்புகழ்</span> — "sacred glory" — the devotional verse of Arunagirinathar. All 1,335 catalogued songs, grouped by the temple where each was composed. Titles are first lines.</p>
+    <input class="searchbar tamil" id="song-search" placeholder="Search songs or temples…" aria-label="Search songs">
+    <div id="song-index"></div>
+  </section>
+
+  <section id="anubhuti">
+    <div class="section-title">Kandhar Anubhuti</div>
+    <p class="section-desc"><span class="tamil">கந்தர் அநுபூதி</span> — "the direct experience of Skanda" — 51 verses tracing surrender, illusion and grace.</p>
+    <input class="searchbar tamil" id="anu-search" placeholder="Search verses…" aria-label="Search verses">
+    <div id="anu-list"></div>
+  </section>
+
+  <section id="stories">
+    <div class="subnav" id="story-subnav">
+      <button class="sub-btn active" data-view="lives">Lives</button>
+      <button class="sub-btn" data-view="texts">Sacred Texts</button>
+      <button class="sub-btn" data-view="sangam">Sangam Literature</button>
+    </div>
+
+    <div class="sview active" id="view-lives">
+      <div class="section-title">Lives</div>
+      <p class="section-desc">The saints and scholars through whom Murugan's songs reached us — from the poet who was caught mid-fall to the magistrate's clerk who spent a lifetime gathering palm leaves.</p>
+      <div id="lives"></div>
+    </div>
+
+    <div class="sview" id="view-texts">
+      <div class="section-title">Sacred Texts</div>
+      <p class="section-desc">The hymns and narratives devotees actually recite — armour, mantra, and the story everything else rests on.</p>
+      <div id="texts"></div>
+    </div>
+
+    <div class="sview" id="view-sangam">
+      <div class="section-title">Sangam Literature</div>
+      <p class="section-desc">Murugan is older than his temples. He appears in the earliest surviving Tamil poetry, two thousand years ago, as the god of the hill country.</p>
+      <div id="sangam"></div>
+    </div>
+  </section>
+
+  <section id="saved">
+    <div class="section-title">Saved</div>
+    <p class="section-desc">Verses you've marked with the star. Stored on this device only.</p>
+    <div id="saved-list"></div>
+  </section>
+
+  <section id="calendar">
+    <div class="section-title">Festivals &amp; Daily Prayer</div>
+    <div class="prayer">
+      <div class="om">ஓம் சரவணபவ</div>
+      <p>Om Saravana Bhava — the six-syllable mantra of Murugan, one for each of his six faces.</p>
+    </div>
+    <div id="festivals"></div>
+  </section>
+</main>
+
+<footer>A devotional reference guide · works offline once loaded</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>
