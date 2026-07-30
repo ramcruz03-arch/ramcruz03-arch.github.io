@@ -4,7 +4,7 @@
  * every existing user onto the new version; without it they keep serving
  * whatever they cached the first time, forever.
  */
-const CACHE = 'kandhan-v2';
+const CACHE = 'kandhan-v3';
 
 /* The app shell. These are fetched on install, so the app works offline
  * from the first visit onward. Keep this list in sync with what index.html
@@ -13,17 +13,18 @@ const SHELL = [
   './',
   './index.html',
   './app.js',
-  './data-v2.json',
+  './data-v3.json',
   './manifest.json',
   './icon.svg',
   './murugan.svg',
+  './art/photos/credits.json',
 ];
 
 /* Cross-origin things we cache opportunistically as they're requested,
  * rather than up front — Google Fonts, and anything else off-site.
  * NOTE: this only helps AFTER a first online visit. Self-hosting the Tamil
  * woff2 files and adding them to SHELL is the real fix. */
-const RUNTIME = 'kandhan-runtime-v2';
+const RUNTIME = 'kandhan-runtime-v3';
 
 self.addEventListener('install', event => {
   event.waitUntil(
