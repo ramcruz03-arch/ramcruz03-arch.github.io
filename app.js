@@ -286,9 +286,9 @@ $('song-search').addEventListener('input', debounce(e => renderSongs(e.target.va
 $('anu-search').addEventListener('input', debounce(e => renderAnubhuti(e.target.value), 150));
 
 // --- boot ---
-fetch('./data.json')
+fetch('./data-v2.json')
   .then(r => {
-    if (!r.ok) throw new Error('data.json ' + r.status);
+    if (!r.ok) throw new Error('data-v2.json ' + r.status);
     return r.json();
   })
   .then(d => {
